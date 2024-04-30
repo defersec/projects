@@ -9,7 +9,7 @@ module "eventbridge" {
         "source": ["aws.s3"],
         "detail-type": ["AWS API Call via CloudTrail"],
         "detail": {
-          "eventSource": ["s3.amazonaws.com"], 
+          "eventSource": ["s3.amazonaws.com"],
           "eventName": ["PutObject", "CompleteMultipartUpload"],
             "requestParameters": {
               "bucketName": [var.s3_bucket_name]
@@ -21,7 +21,7 @@ module "eventbridge" {
   targets = {
     s3_put_object = {
       example_target = {
-        arn           = aws_sns_topic.sns_topic.arn 
+        arn           = aws_sns_topic.sns_topic.arn
         name          = "send-s3-put-events-to-sns-topic"
       }
     }

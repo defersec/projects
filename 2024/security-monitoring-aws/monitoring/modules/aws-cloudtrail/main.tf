@@ -21,7 +21,7 @@ resource "aws_cloudtrail" "default" {
     read_write_type           = "All"
     include_management_events = true
 
-    # TODO: Create S3 bucket GitOps style 
+    # TODO: Create S3 bucket GitOps style
     data_resource {
       type   = "AWS::S3::Object"
       values = ["arn:aws:s3:::s3-poc-lambda-golang-eventbridge-cloudtrail/"]

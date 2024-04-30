@@ -5,7 +5,7 @@ provider "aws" {
 # Create S3 bucket
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "defersec-tfstate"
-     
+
   lifecycle {
     prevent_destroy = true
   }
