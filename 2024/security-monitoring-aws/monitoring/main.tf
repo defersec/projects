@@ -8,10 +8,18 @@ module "aws-cloudtrail" {
   cloudwatch_log_group_name = var.cloudwatch_log_group_name
 }
 
-# Create Cloudtrail
+# Create EventBridge for SNS
 module "aws-eventbridge-sns" {
   source = "./modules/aws-eventbridge/sns"
 
   sns_topic             = var.sns_topic
   s3_bucket_name        = var.s3_bucket_name
+}
+
+# Create EventBridge for Lambda
+module "aws-eventbridge-Lambda" {
+  source = "./modules/aws-eventbridge/lambda"
+
+  s3_bucket_name        = var.s3_bucket_name
+  lambda_function_arn   = aws_lambda_function.cloudtrail-events-parser.arn
 }
